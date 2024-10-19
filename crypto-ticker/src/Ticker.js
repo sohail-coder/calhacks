@@ -157,7 +157,7 @@ const Ticker = () => {
       setConnectionStatus("Connected");
       const subscribeMessage = {
         event: "subscribe",
-        pair: ["BTC/USD"],
+        pair: ["SOL/USD"],
         subscription: {
           name: "ticker",
         },
