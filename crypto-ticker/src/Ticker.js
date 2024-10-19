@@ -102,7 +102,7 @@
 
 // src/Ticker.js
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; // Import the store function
 
 /**
  * Ticker Component
@@ -193,12 +193,34 @@ const Ticker = () => {
             pair,
             channel_name: channelName,
           };
-
+          console.log(flattenTickerData);
           // Flatten the combined data
           const flatData = flattenTickerData(combinedData);
 
           // Update state with flattened data
           setFlattenedData(flatData);
+          async function storeTickerData(flatData) {
+            try {
+              const response = await fetch('http://127.0.0.1:5002/store-ticker', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(flatData),
+              });
+
+              if (response.ok) {
+                console.log('Data stored successfully');
+              } else {
+                console.error('Failed to store data');
+              }
+            } catch (error) {
+              console.error('Error:', error);
+            }
+          }
+
+          // Example usage:
+          storeTickerData(flatData);
 
           // Log the flattened data to the console
           console.log("Flattened Ticker Data:", flatData);

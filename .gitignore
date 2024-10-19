@@ -1,2 +1,5 @@
 myenv
 myenv/
+venv
+backend/venv
+backend/node_modules
